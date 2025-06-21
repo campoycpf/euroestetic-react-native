@@ -1,0 +1,11 @@
+export interface RedsysData {
+  DS_MERCHANT_AMOUNT: string;
+  DS_MERCHANT_CURRENCY: string;
+  DS_MERCHANT_MERCHANTCODE: string;
+  DS_MERCHANT_MERCHANTURL: string;
+  DS_MERCHANT_ORDER: string;
+  DS_MERCHANT_TERMINAL: string;
+  DS_MERCHANT_TRANSACTIONTYPE: string;
+  DS_MERCHANT_URLKO: string;
+  DS_MERCHANT_URLOK: string;
+}

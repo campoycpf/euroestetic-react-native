@@ -1,0 +1,29 @@
+
+services:
+  payload:
+    image: node:20-slim # Cambiado de node:22.12.0-slim a node:20-slim (LTS)
+    ports:
+      - '3000:3000'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    working_dir: /home/node/app/
+    command: >
+      sh -c "
+        apt-get update && apt-get install -y build-essential gcc g++ make python3 libvips-dev --no-install-recommends && \
+        corepack enable && \
+        corepack prepare pnpm@latest --activate && \
+        pnpm install && \
+        pnpm install sharp@latest && \
+        NODE_ENV=production pnpm build && \
+        NODE_ENV=production pnpm start
+      " 
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+
+volumes:
+  node_modules:
